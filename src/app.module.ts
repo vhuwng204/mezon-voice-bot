@@ -5,6 +5,7 @@ import { MezonModule } from './mezon/mezon.module';
 import { BotModule } from './bot/bot.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { VoiceBotModule } from './bot/commands/voice_bot/voice_bot.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { join } from 'path';
       imports: [ConfigModule],
     }),
     BotModule,
+    VoiceBotModule
   ],
 })
-export class AppModule {}
+export class AppModule { }
