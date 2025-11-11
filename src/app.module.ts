@@ -6,6 +6,7 @@ import { BotModule } from './bot/bot.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { VoiceBotModule } from './bot/commands/voice_bot/voice_bot.module';
+import { MCPModule } from './mcp/client/mcp.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { VoiceBotModule } from './bot/commands/voice_bot/voice_bot.module';
       imports: [ConfigModule],
     }),
     BotModule,
-    VoiceBotModule
+    VoiceBotModule,
+    MCPModule
   ],
 })
 export class AppModule { }

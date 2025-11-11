@@ -206,8 +206,8 @@ export class VoiceBotService {
     }
     async handleShowHelpMessage(message: ChannelMessage) {
         const helpMessage = `**Voice Bot Commands:**
-        *register_voice <private|public> <voice_name> - Register a new voice
-        *clone_voice <voice_name> - Clone a voice
+        *register_voice <private|public> <voice_name> & <attach a voice file> - Register a new voice
+        *clone_voice <voice_name> - Clone a voice from another user
         *list_voice - List all voices
         *play_audio <voice_name> - Play a voice
         *bot_help - Show this help message
