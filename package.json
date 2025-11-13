@@ -1,8 +1,8 @@
 {
-  "name": "mezon-bot-example-nestjs",
-  "version": "0.0.3",
-  "description": "",
-  "author": "Duong Nguyen Dai<hello@mrdnd.dev>",
+  "name": "mezon-voice-bot",
+  "version": "0.0.1",
+  "description": "Mezon Voice Bot",
+  "author": "hung.nguyenvo@ncc.asia",
   "private": false,
   "license": "MIT",
   "scripts": {
@@ -33,7 +33,7 @@
     "@types/joi": "^17.2.3",
     "dotenv": "^16.5.0",
     "joi": "^17.13.3",
-    "mezon-sdk": "^2.8.24",
+    "mezon-sdk": "^2.8.25",
     "minimatch": "^10.1.1",
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",

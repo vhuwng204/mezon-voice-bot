@@ -20,7 +20,7 @@ export class VoiceBotCommand {
     }
     // else if (message.content.t?.startsWith('*play_audio'))
     //   await this.voiceBotService.handleVoiceBot(message);
-    else if (message.content.t?.startsWith('*bot_help')) {
+    else if (message.content.t?.startsWith('*help')) {
       await this.voiceBotService.handleShowHelpMessage(message);
     }
   }

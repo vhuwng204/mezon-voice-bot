@@ -20,11 +20,7 @@ interface MCPClientLike {
 
 @Injectable()
 export class MCPApiService {
-    private readonly connection: MCPConnection;
-
-    constructor() {
-        this.connection = new MCPConnection();
-    }
+    constructor(private readonly connection: MCPConnection) {}
 
     async mcpRequest<
         TRequest extends MCPRequest = MCPRequest,

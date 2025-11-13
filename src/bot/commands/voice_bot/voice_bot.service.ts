@@ -180,6 +180,7 @@ export class VoiceBotService {
         await this.cloneVoice(message, voiceName, voice);
     }
     async handleGetListVoice(message: ChannelMessage) {
+        console.log(message);
         const voices = await this.userVoiceRepository.find();
         if (voices.length === 0) {
             await this.mezonClientService.sendMessage({

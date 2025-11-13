@@ -1883,10 +1883,17 @@
   dependencies:
     minimatch "*"
 
-"@types/node@*", "@types/node@>=13.7.0":
+"@types/node@*":
   version "24.10.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-24.10.0.tgz#6b79086b0dfc54e775a34ba8114dcc4e0221f31f"
   integrity sha512-qzQZRBqkFsYyaSWXuEHc2WR9c0a0CXwiE5FWUvn7ZM+vdy1uZLfCunD38UzhuB7YN/J11ndbDBcTmOdxJo9Q7A==
+  dependencies:
+    undici-types "~7.16.0"
+
+"@types/node@>=13.7.0":
+  version "24.10.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.10.1.tgz#91e92182c93db8bd6224fca031e2370cef9a8f01"
+  integrity sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==
   dependencies:
     undici-types "~7.16.0"
 
@@ -6474,10 +6481,10 @@ methods@^1.1.2:
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==
 
-mezon-sdk@^2.8.24:
-  version "2.8.24"
-  resolved "https://registry.yarnpkg.com/mezon-sdk/-/mezon-sdk-2.8.24.tgz#9df5e64f9189b9397ab8cde6a29f06f77e5b6ac5"
-  integrity sha512-+l2+/m7Tqil9Az3NpJembej5Wuu5XRUTziZJp/yx/WxJ8G0omCgnBeF2hyLdaCV4uRANBTuYWetaOqOGMZbjGA==
+mezon-sdk@^2.8.25:
+  version "2.8.25"
+  resolved "https://registry.yarnpkg.com/mezon-sdk/-/mezon-sdk-2.8.25.tgz#f0070132e80948a3e26090b04ab217cb0fe77145"
+  integrity sha512-DBS2e1TnUc5pbMyWGn+ON2gzWBYr/BnOksdplENyBa+IXrFs1SUpJL+ssLiP4W+7+p/bz7NJBjGVMJJyKVgCjQ==
   dependencies:
     "@types/ws" "^8.5.12"
     base64-arraybuffer "^1.0.2"

@@ -49,5 +49,9 @@ export class BotGateway {
         this.eventEmitter.emit(Events.ChannelMessage, message);
       }
     });
+    this.client.onAddClanUser(async (user) => {
+      console.log('Add clan user', user);
+      this.eventEmitter.emit(Events.AddClanUser, user);
+    });
   }
 }

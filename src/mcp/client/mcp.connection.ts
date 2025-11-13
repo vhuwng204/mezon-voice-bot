@@ -1,7 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
+@Injectable()
 export class MCPConnection {
     private client: Client | null = null;
     private transport: StreamableHTTPClientTransport | null = null;
