@@ -1,10 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, Index } from 'typeorm';
-import { ACCESS_LEVEL } from '../constants';
+import { ACCESS_LEVEL } from '../constants/bot';
 
 
 @Index([
     'mezonUserId',
     'voiceName',
+    'numberUsage',
+    'isDefault',
+    'voicePath',
+    'isPrivate',
 ])
 @Entity("user_voices")
 export class UserVoice {
@@ -25,6 +29,9 @@ export class UserVoice {
 
     @Column({ type: "enum", enum: ACCESS_LEVEL, default: ACCESS_LEVEL.PRIVATE, name: "is_private" })
     isPrivate: ACCESS_LEVEL
+
+    @Column({ type: "bigint", name: "number_usage", default: 1 })
+    numberUsage: number
 
     @Column({ type: "bigint", name: "created_at" })
     createdAt: number

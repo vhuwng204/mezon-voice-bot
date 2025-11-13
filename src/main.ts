@@ -22,7 +22,6 @@ async function bootstrap() {
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, documentFactory);
 
-  // Kiểm tra kết nối MCP
   try {
     const mcpConnection = app.get(MCPConnection);
     const sessionId = await mcpConnection.ensureConnected();

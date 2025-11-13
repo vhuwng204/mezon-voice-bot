@@ -1,12 +1,11 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ChannelMessage } from 'mezon-sdk';
 import { UserVoice } from 'src/bot/models/user_voice.entity';
-import { VoiceUsage } from 'src/bot/models/voice_usage.entity';
 import { Repository } from 'typeorm';
 import { RegisterVoiceDto } from './voice_bot.dto';
 import { MezonClientService } from 'src/mezon/client.service';
-import { ACCESS_LEVEL } from 'src/bot/constants';
+import { ACCESS_LEVEL } from 'src/bot/constants/bot';
 
 @Injectable()
 export class VoiceBotService {
@@ -14,8 +13,6 @@ export class VoiceBotService {
         private readonly mezonClientService: MezonClientService,
         @InjectRepository(UserVoice)
         private readonly userVoiceRepository: Repository<UserVoice>,
-        @InjectRepository(VoiceUsage)
-        private readonly voiceUsageRepository: Repository<VoiceUsage>,
     ) { }
 
     private async registerVoice(registerVoiceDto: RegisterVoiceDto): Promise<{ success: boolean, message: string, voiceId?: number | undefined }> {

@@ -1,4 +1,4 @@
-import { ACCESS_LEVEL } from "src/bot/constants";
+import { ACCESS_LEVEL } from "src/bot/constants/bot";
 
 export class RegisterVoiceDto {
     mezonUserId: string;
