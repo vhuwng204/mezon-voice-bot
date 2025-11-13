@@ -6,6 +6,7 @@ export class RegisterVoiceDto {
     voiceName: string;
     isPrivate: ACCESS_LEVEL;
     isDefault: boolean;
+    createdBy: string;
     createdAt: number;
     updatedAt: number;
 }

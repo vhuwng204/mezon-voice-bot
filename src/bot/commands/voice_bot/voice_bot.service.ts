@@ -35,31 +35,13 @@ export class VoiceBotService {
         };
     }
 
-    private async cloneVoice(message: ChannelMessage, voiceName: string, voice?: UserVoice | null): Promise<void> {
-        console.log(voice);
-        if (voice?.isPrivate === ACCESS_LEVEL.PRIVATE) {
+    private async cloneVoice(message: ChannelMessage, cloneVoiceName: string): Promise<void> {
+        const cloneVoice = await this.userVoiceRepository.findOne({ where: { voiceName: cloneVoiceName } });
+        if (!cloneVoice) {
             await this.mezonClientService.sendMessage({
                 mode: 1,
                 msg: {
-                    t: `Voice is private. You cannot clone it.`,
-                },
-                channel_id: message.channel_id,
-            });
-            return;
-        }
-
-        const existingUserVoice = await this.userVoiceRepository.findOne({
-            where: {
-                voiceName,
-                mezonUserId: message.sender_id,
-            },
-        });
-
-        if (existingUserVoice) {
-            await this.mezonClientService.sendMessage({
-                mode: 1,
-                msg: {
-                    t: `You already have a voice with this name. Please choose another name.`,
+                    t: `Voice name does not exist. Please register it first.`,
                 },
                 channel_id: message.channel_id,
             });
@@ -68,15 +50,17 @@ export class VoiceBotService {
 
         const response = await this.registerVoice({
             mezonUserId: message.sender_id,
-            voiceName: voiceName,
-            voicePath: voice?.voicePath || '',
-            isPrivate: voice?.isPrivate || ACCESS_LEVEL.PUBLIC,
+            voiceName: cloneVoiceName,
+            voicePath: cloneVoice?.voicePath || '',
+            isPrivate: cloneVoice?.isPrivate || ACCESS_LEVEL.PUBLIC,
             isDefault: false,
+            createdBy: cloneVoice?.mezonUserId || '',
             createdAt: Date.now(),
             updatedAt: Date.now(),
         });
 
         if (response.success) {
+            await this.userVoiceRepository.increment({ id: cloneVoice?.id, createdBy: cloneVoice?.createdBy }, 'number_usage', 1);
             await this.mezonClientService.sendMessage({
                 mode: 1,
                 msg: {
@@ -137,6 +121,7 @@ export class VoiceBotService {
             voicePath: message.attachments[0]?.url || '',
             isPrivate: type === ACCESS_LEVEL.PRIVATE ? ACCESS_LEVEL.PRIVATE : ACCESS_LEVEL.PUBLIC,
             isDefault: false,
+            createdBy: message.sender_id,
             createdAt: Date.now(),
             updatedAt: Date.now(),
         });
@@ -161,8 +146,8 @@ export class VoiceBotService {
     async handleCloneVoice(message: ChannelMessage) {
         const parts = message.content.t?.trim().split(/\s+/) || [];
         let command = parts.shift();
-        let voiceName = parts.join(' ');
-        if (!command || !voiceName) {
+        let cloneVoiceName = parts.join(' ');
+        if (!command || !cloneVoiceName) {
             await this.mezonClientService.sendMessage({
                 mode: 1,
                 msg: {
@@ -172,9 +157,7 @@ export class VoiceBotService {
             });
             return;
         }
-
-        let voice = await this.userVoiceRepository.findOne({ where: { voiceName } });
-        await this.cloneVoice(message, voiceName, voice);
+        await this.cloneVoice(message, cloneVoiceName);
     }
     async handleGetListVoice(message: ChannelMessage) {
         console.log(message);

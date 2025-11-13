@@ -33,6 +33,9 @@ export class UserVoice {
     @Column({ type: "bigint", name: "number_usage", default: 1 })
     numberUsage: number
 
+    @Column({ type: "text", name: "created_by" })
+    createdBy: string
+
     @Column({ type: "bigint", name: "created_at" })
     createdAt: number
 
