@@ -16,18 +16,19 @@ jobs:
       actions: write
       deployments: write
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 22.x
+      
       - name: Install dependencies
         run: yarn install
-        working-directory: ./mezon-voice-bot-test-nezon
 
       - name: Build
         run: yarn build
-        working-directory: ./mezon-voice-bot-test-nezon
 
       - name: Deploy
         run: yarn start:prod
-        working-directory: ./mezon-voice-bot-test-nezon
