@@ -22,7 +22,12 @@ jobs:
           node-version: 20.x
       - name: Install dependencies
         run: yarn install
+        working-directory: ./
+
       - name: Build
         run: yarn build
+        working-directory: ./
+
       - name: Deploy
         run: yarn start:prod
+        working-directory: ./
