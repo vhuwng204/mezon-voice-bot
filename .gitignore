@@ -14,6 +14,7 @@
 
 
 .env
+secrets.env
 
 .cursorrules
 .cursor
