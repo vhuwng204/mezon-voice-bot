@@ -15,6 +15,26 @@ jobs:
       discussions: write
       actions: write
       deployments: write
+    env:
+      MEZON_TOKEN: ${{ secrets.MEZON_TOKEN }}
+      MEZON_BOT_ID: ${{ secrets.MEZON_BOT_ID }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      ENABLE_SYNCHRONIZE: ${{ secrets.ENABLE_SYNCHRONIZE }}
+      MCP_SERVER_URL: ${{ secrets.MCP_SERVER_URL }}
+      PORT: ${{ secrets.PORT }}
+      RUNPOD_ENPOINT: ${{ secrets.RUNPOD_ENPOINT }}
+      API_KEY: ${{ secrets.API_KEY }}
+      MINIO_ENDPOINT: ${{ secrets.MINIO_ENDPOINT }}
+      MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
+      MINIO_SECRET_KEY: ${{ secrets.MINIO_SECRET_KEY }}
+      MINIO_BUCKET: ${{ secrets.MINIO_BUCKET }}
+      MINIO_FOLDER: ${{ secrets.MINIO_FOLDER }}
+      CDN_URL: ${{ secrets.CDN_URL }}
+      WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
