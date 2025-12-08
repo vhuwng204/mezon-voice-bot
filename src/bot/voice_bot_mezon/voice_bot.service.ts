@@ -150,7 +150,7 @@ export class VoiceBotService {
             take: 13,
         });
 
-        replyText += "Top available voice:\n";
+        replyText += "Top available voice: id name (xx usages)\n";
         replyText += topVoices
             .map((v) => {
                 return `${v.id} ${v.voiceName} (${v.numberUsage} usages)`;
@@ -401,7 +401,8 @@ export class VoiceBotService {
                 return true;
             }
             if (trimmed.startsWith('- ') && !trimmed.toLowerCase().startsWith('- ví dụ:')) {
-                return true;
+                const hasIndent = text.startsWith(' ') || text.startsWith('\t');
+                return !hasIndent;
             }
             return false;
         };
@@ -433,12 +434,7 @@ export class VoiceBotService {
         })
     }
 
-    private removeIdSuffix(name: string): string {
-        return name.replace(/_\d+$/, '');
-    }
-    
     async handleUseVoice(user: Nezon.User, query: string, @AutoContext('message') message: Nezon.AutoContextType.Message) {
-        console.log(user);
         const numericVoiceId = Number(query);
         let publicVoice: Voice | null = null;
         if (!Number.isNaN(numericVoiceId)) {
@@ -465,11 +461,11 @@ export class VoiceBotService {
             };
             await this.userVoiceRepository.save(newUserVoice);
             await this.voiceRepository.increment({ id: publicVoice.id }, "numberUsage", 1);
-            return message.reply(SmartMessage.system(`Sử dụng giọng ${query} thành công.`));
+            return message.reply(SmartMessage.system(`Sử dụng giọng ${publicVoice.voiceName} thành công.`));
         }
         userVoiceExists.voiceId = publicVoice;
         await this.userVoiceRepository.save(userVoiceExists);
         await this.voiceRepository.increment({ id: publicVoice.id }, "numberUsage", 1);
-        return message.reply(SmartMessage.system(`Giọng ${query} đã được sử dụng.`));
+        return message.reply(SmartMessage.system(`Giọng ${publicVoice.voiceName} đã được sử dụng.`));
     }
 }

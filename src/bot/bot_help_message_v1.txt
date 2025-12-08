@@ -1,23 +1,20 @@
 Mezon_Voice_Bot có các lệnh sau:
-1. Xem các giọng đã được đăng ký
+1. Xem các giọng đang có
 - Cách thực hiện: gõ lệnh như sau: *list
-- Kết quả hiển thị chỉ bao gồm danh sách giọng public ở dạng:
-top available voice:
-<id> <tên giọng> (<số lần sử dụng> uses)
+- Kết quả hiển thị danh sách giọng đang có :
 - ví dụ: *list
-top available voice:
-48 Nam_Mien_Nam_1 (3 uses)
-61 Nu_Mien_Nam_1 (3 uses)
-55 Nu_Mien_Bac_2 (2 uses)
-2. Sử dụng giọng của người dùng khác
-- Cách thực hiện: gõ lệnh như sau: *use <tên giọng>
-- yêu cầu: chỉ sử dụng được những giọng có kiểu là public
+top available voice: id name (xx usages)
+48 Nam_Mien_Nam_1 (3 usages)
+61 Nu_Mien_Nam_1 (3 usages)
+55 Nu_Mien_Bac_2 (2 usages)
+2. Sử dụng giọng đang có trên hệ thống
+- Cách thực hiện: gõ lệnh như sau: *use <tên giọng> hoặc *use <id>
 - ví dụ: muốn sử dụng giọng là Hehehe có id là 50
-    - *use Hehehe
-    - *use 50 
+    - Nếu sử dụng tên: *use Hehehe 
+    - Nếu sử dụng id: *use 50 
 3. Sử dụng chuyển văn bản thành âm thanh
 - Cách thực hiện: *play <đoạn văn bản>
-- Note: Nếu như bạn chưa chọn sử dụng bản ghi giọng nào thì hệ thống sẽ lấy random 1 giọng để phát
+- Note: Nếu như bạn chưa chọn giọng nào bằng (*use) thì hệ thống sẽ lấy random 1 giọng để phát
 - ví dụ: muốn chuyển "Tôi rất đẹp trai" sang bản audio 
     - *play Tôi rất đẹp trai
 4. Xem hướng dẫn sử dụng của con bot
