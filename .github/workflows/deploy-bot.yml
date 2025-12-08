@@ -22,7 +22,7 @@ jobs:
           node-version: 20.x
       - name: Install dependencies
         run: yarn install
-        working-directory: ./MEZON_Vmezon-voice-bot-test-nezonOICE_BOT
+        working-directory: ./mezon-voice-bot-test-nezon
 
       - name: Build
         run: yarn build
