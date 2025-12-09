@@ -7,28 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-
-    env:
-      MEZON_TOKEN: ${{ secrets.MEZON_TOKEN }}
-      MEZON_BOT_ID: ${{ secrets.MEZON_BOT_ID }}
-      DB_HOST: ${{ secrets.DB_HOST }}
-      DB_PORT: ${{ secrets.DB_PORT }}
-      DB_NAME: ${{ secrets.DB_NAME }}
-      DB_USERNAME: ${{ secrets.DB_USERNAME }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      ENABLE_SYNCHRONIZE: ${{ secrets.ENABLE_SYNCHRONIZE }}
-      MCP_SERVER_URL: ${{ secrets.MCP_SERVER_URL }}
-      PORT: ${{ secrets.PORT }}
-      RUNPOD_ENPOINT: ${{ secrets.RUNPOD_ENPOINT }}
-      API_KEY: ${{ secrets.API_KEY }}
-      MINIO_ENDPOINT: ${{ secrets.MINIO_ENDPOINT }}
-      MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
-      MINIO_SECRET_KEY: ${{ secrets.MINIO_SECRET_KEY }}
-      MINIO_BUCKET: ${{ secrets.MINIO_BUCKET }}
-      MINIO_FOLDER: ${{ secrets.MINIO_FOLDER }}
-      CDN_URL: ${{ secrets.CDN_URL }}
-      WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+    runs-on: mezon-voice-bot-vhuwng
 
     steps:
       - name: Checkout code
@@ -57,5 +36,18 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
+            ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:
+              
+
+      - name: Pull Docker image
+        uses: appleboy/ssh-action@v1.0.1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd /home/nccsoft/hn3-voice-bot
+            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
+            docker compose down
+            docker compose up -d
 
