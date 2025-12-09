@@ -45,6 +45,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
+          port: 22
           script: |
             cd /home/nccsoft/hn3-voice-bot
             docker compose down
